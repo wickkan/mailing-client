@@ -21,4 +21,17 @@ msg['Subject'] = 'Test Project'
 with open('msg.txt', 'r') as f:
     msg = f.read()
 
-msg.attach()
+msg.attach(MIMEText(msg, 'plain'))
+
+filename = 'bridge.jpeg'
+attachment = open(filename, 'rb')
+
+p = MIMEBase('application', 'octet-stream')
+p.set_payload(attachment.read())
+
+encoders.encode_base64(p)
+p.add_header('Content-Disposition', f'attachement; filename={filename}')
+msg.attach(p)
+
+text = msg.as_string()
+server.sendmail('mailtesting@neuralnine.com','testmails@spaml.de', text)
