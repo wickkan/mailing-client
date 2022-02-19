@@ -1,3 +1,7 @@
+"""
+Code inspired by FreeCodeCamp: youtube.com/watch?v=FGdiSJakIS4&ab_channel=freeCodeCamp.org
+"""
+
 import smtplib
 from email import encoders
 from email.mime.text import MIMEText
