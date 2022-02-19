@@ -11,11 +11,11 @@ server.ehlo()
 with open('password.txt', 'r') as f:
     password = f.read()
 
-server.login('throwaway197256@gmail.com', password)
+server.login('<insert gmail>', password)
 
 msg = MIMEMultipart()
 msg['From'] = 'John'
-msg['To'] = 'throwaway197256@gmail.com'
+msg['To'] = '<insert email>'
 msg['Subject'] = 'Test Project'
 
 with open('msg.txt', 'r') as f:
@@ -35,5 +35,4 @@ p.add_header('Content-Disposition',
 msg.attach(p)
 
 text = msg.as_string()
-server.sendmail('mailtesting@neuralnine.com',
-                'throwaway197256@gmail.com', text)
+server.sendmail('<insert email>', text)
