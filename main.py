@@ -1,2 +1,1 @@
-print("hello world!")
-x = 5
+import smtplib
