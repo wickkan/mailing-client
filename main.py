@@ -15,7 +15,7 @@ server.login('throwaway197256@gmail.com', password)
 
 msg = MIMEMultipart()
 msg['From'] = 'John'
-msg['To'] = 'testmails@spam1.de'
+msg['To'] = 'throwaway197256@gmail.com'
 msg['Subject'] = 'Test Project'
 
 with open('msg.txt', 'r') as f:
@@ -34,4 +34,5 @@ p.add_header('Content-Disposition', f'attachement; filename={filename}')
 msg.attach(p)
 
 text = msg.as_string()
-server.sendmail('mailtesting@neuralnine.com','testmails@spaml.de', text)
+server.sendmail('mailtesting@neuralnine.com',
+                'throwaway197256@gmail.com', text)
