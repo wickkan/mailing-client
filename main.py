@@ -5,7 +5,7 @@ from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
 
 
-server = smtplib.SMTP('smtp.gmail.com', 25)
+server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
 server.ehlo()
 
 with open('password.txt', 'r') as f:
@@ -19,18 +19,19 @@ msg['To'] = 'throwaway197256@gmail.com'
 msg['Subject'] = 'Test Project'
 
 with open('msg.txt', 'r') as f:
-    msg = f.read()
+    body = f.read()
 
-msg.attach(MIMEText(msg, 'plain'))
+msg.attach(MIMEText(body, 'plain'))
 
-filename = 'bridge.jpeg'
-attachment = open(filename, 'rb')
+image = 'bridge.jpeg'
+attachment = open(image, 'rb')
 
 p = MIMEBase('application', 'octet-stream')
 p.set_payload(attachment.read())
 
 encoders.encode_base64(p)
-p.add_header('Content-Disposition', f'attachement; filename={filename}')
+p.add_header('Content-Disposition',
+             'attachment; filename = {}.format(image)')
 msg.attach(p)
 
 text = msg.as_string()
